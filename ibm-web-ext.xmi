@@ -1,0 +1,5 @@
+<webappext:WebAppExtension xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+   xmlns:webappext="webappext.xmi" xmlns:webapplication="webapplication.xmi" xmi:id="WebAppExtension_WebAppId"
+   contextRoot="/booking-automation">
+   <webApp href="WEB-INF/web.xml#WebAppId"/>
+</webappext:WebAppExtension>
