@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:drools="http://drools.org/schema/drools-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<!-- This empty tag is used to activate the ${...} property evaluator -->
+	<!--<context:property-placeholder />-->
+
+
+	<!-- Define all the rule spreadsheets  -->
+	<drools:resource id="priceSample" type="DTABLE"
+		source="file:${drool.file.path}/sample.xls">
+	</drools:resource>
+
+	<!-- Define the knowledge agent and the resource scanner -->
+	<drools:resource-change-scanner id="scanner" interval="60" enabled="true"/>           
+    <drools:kagent id="agent" kbase="controllerKBase" new-instance="true"> 
+	    <drools:resources> 
+            <drools:resource ref="priceSample"></drools:resource>
+            <!--<drools:resource ref="CorpCodeRule"></drools:resource>-->
+
+	    </drools:resources> 
+    </drools:kagent> 	
+    
+	<!-- Define the knowledge base -->
+	<drools:kbase id="controllerKBase">
+		<drools:resources>
+			<drools:resource ref="priceSample"></drools:resource>
+			<!--<drools:resource ref="CorpCodeRule"></drools:resource>-->
+
+		</drools:resources>
+	</drools:kbase>
+	
+	<!-- Define the knowledge session -->
+	<drools:ksession kbase="controllerKBase" type="stateless" id="controllerKSession"></drools:ksession>
+
+	<!--&lt;!&ndash; Input and output args for the drools workbook rules &ndash;&gt;
+	<bean id="ControlItemListArgs" class="com.ge.capital.controller.drools.model.ControlItemListArgs" scope="prototype"></bean>
+	<bean id="DataChangeDependancyArgs" class="com.ge.capital.controller.drools.model.DataChangeDependancyArgs" scope="prototype"></bean>
+	<bean id="CascadingDependancyArgs" class="com.ge.capital.controller.drools.model.CascadingDependancyArgs" scope="prototype"></bean>
+
+	<bean id="DroolsExecutor" class="com.ge.capital.controller.drools.DroolsExecutor"></bean>
+-->
+</beans>
