@@ -1,0 +1,16 @@
+<assembly>
+	<id>assembly</id>
+	<baseDirectory>${basedir}</baseDirectory>
+	<formats>
+		<format>tar</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>/</directory>
+			<outputDirectory>/</outputDirectory>
+			<excludes>
+				<exclude>/local/**</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>
